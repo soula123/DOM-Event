@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form1">
+    <h1>Interface Corona</h1>
+    <input type="text" id="input-text">
+    <br>
+    <button id="btn-ajout">Ajouter</button><br>
+     <h3>enregitrées</h3><br>
+      <ul class="list-enreg">
+
+      </ul>
+    <br>
+    <h3>vaccinées</h3><br>
+    <ul class="list-vacc">
+
+    </ul>
+</div>
+   
+</body>
+<script>
+    let input=document.querySelector("#input-text")
+    const btn_ajout=document.querySelector("#btn-ajout")
+    const enregistree=document.querySelector(".list-enreg")
+    const vaccinees=document.querySelector(".list-vacc")
+    btn_ajout.onclick = () => {
+    ajout();
+    console.log("salem");
+};
+input.onkeydown = (e) => {
+  if (e.key == "Enter") {
+    ajout();
+  }
+};
+document
+  .querySelectorAll("*")
+  .forEach((el) => el.addEventListener("mouseover", (e) => {}));
+
+const ajout = (e) => {
+  if (!input.value.length) {
+    alert("element feregh");
+    return false;
+  }
+  let li = document.createElement("li");
+  let input = document.createElement("input");
+  input.setAttribute("type",'text')
+  input.style.border="none"
+  input.setAttribute("value", input.value);
+  input.setAttribute("readonly",true)
+  let vacciné = document.createElement("button");
+  vacciné.innerText = "vacciné";
+  vacciné.addEventListener("click", vaccine);
+  li.append("esm: ")
+  li.appendChild(input);
+  li.appendChild(vacciné);
+  input.value = "";
+  enregistree.appendChild(li);
+};
+
+</script>
+</html>
