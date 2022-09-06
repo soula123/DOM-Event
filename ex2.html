@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .form1{
+        body{
             text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="form1">
     <h1>Interface Corona</h1>
     <input type="text" id="input-text">
     <br>
@@ -26,11 +25,10 @@
     <ul class="list-vacc">
 
     </ul>
-</div>
    
 </body>
 <script>
-    let input=document.querySelector("#input-text")
+    let input_text=document.querySelector("#input-text")
     const btn_ajout=document.querySelector("#btn-ajout")
     const enregistree=document.querySelector(".list-enreg")
     const vaccinees=document.querySelector(".list-vacc")
@@ -38,17 +36,15 @@
     ajout();
     console.log("salem");
 };
-input.onkeydown = (e) => {
+input_text.onkeydown = (e) => {
   if (e.key == "Enter") {
     ajout();
   }
 };
-document
-  .querySelectorAll("*")
-  .forEach((el) => el.addEventListener("mouseover", (e) => {}));
+
 
 const ajout = (e) => {
-  if (!input.value.length) {
+  if (!input_text.value.length) {
     alert("element feregh");
     return false;
   }
@@ -56,7 +52,7 @@ const ajout = (e) => {
   let input = document.createElement("input");
   input.setAttribute("type",'text')
   input.style.border="none"
-  input.setAttribute("value", input.value);
+  input.setAttribute("value", input_text.value);
   input.setAttribute("readonly",true)
   let vacciné = document.createElement("button");
   vacciné.innerText = "vacciné";
@@ -64,9 +60,25 @@ const ajout = (e) => {
   li.append("esm: ")
   li.appendChild(input);
   li.appendChild(vacciné);
-  input.value = "";
+  input_text.value = "";
   enregistree.appendChild(li);
 };
+const vaccine = (e) => {
+  let doc=e.target.parentNode
+  vaccinees.appendChild(e.target.parentNode)
+  doc.querySelector("button").innerText="supprimer"
+  doc.querySelector("button").style.background="red"
+  let deleteButton = doc.querySelector("button")
+      deleteButton.addEventListener("click", supprimer);
+
+}
+const supprimer=(e)=>{
+      e.target.parentNode.remove();
+      console.log("delete clicked ");
+
+   
+
+}
 
 </script>
 </html>

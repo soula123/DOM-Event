@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        #affichage{
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Interface Admin</h1>
+    <input type="file" id="input-img">
+    <input type="text" id="input-text">
+    <button id="btn-poster">poster</button>
+    <br>
+    <hr>
+    <div id="affichage">
+
+    </div>
+</body>
+<script>
+    const input_img=document.querySelector("#input-img")
+    const input_text=document.querySelector("#input-text")
+    const btn_poster=document.querySelector("#btn-poster")
+    const affichage=document.querySelector("#affichage")
+    btn_poster.onclick = () => {
+      addUser();
+    };
+    input_text.onkeydown = (e) => {
+      if (e.key == "Enter") {
+        addUser();
+      }
+    };
+   
+    const addUser = (e) => {
+      if (!input_text.value.length) {
+        alert("element feregh");
+        return false;
+      }
+      let deleteButton = document.createElement("button");
+      deleteButton.innerText = "delete";
+      deleteButton.addEventListener("click", deleteUser);
+      let input = document.createElement("input");
+      input.setAttribute("type",'text')
+      input.style.border="none"
+      input.setAttribute("value", input_text.value);
+      input.setAttribute("readonly",true)
+      /* let img = document.createElement("img");
+      input.setAttribute("src",input_img.value) */
+      $(window).load(function(){
+     function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+             
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+             
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+     
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+});//]]> 
+      affichage.appendChild(deleteButton);
+      affichage.append("titre: ");
+      affichage.appendChild(input)
+    // affichage.appendChild(img);
+      input_text.value = "";
+      input_img.value=""
+      
+     
+
+
+
+
+    };
+    const deleteUser = (e) => {
+
+    }
+</script>
+</html>

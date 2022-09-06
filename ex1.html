@@ -1,66 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-       .zone-text{
+      #ktiba {
         font-weight: bold;
-       }
+      }
+      button {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
     </style>
-</head>
-<body>
-    <h1> List App </h1>
-    <input type="text" id="inputList">
-    <button id="btn-ajout" >ajouter <span id="zone-text"></span> à la liste</button>
-<hr>
-<ul></ul>
+  </head>
+  <body>
+    <input type="text" name="" id="text" />
+    <button>
+      <span>ajoute</span>
+      <p id="ktiba"></p>
+      <span>a la liste</span>
+    </button>
 
-<script>
-    const listeHTML = document.querySelector("ul");
-    const ajoutButton = document.querySelector("button");
-    const inputText = document.querySelector("input");
-    const ktiba = document.querySelector("#zone-text");
+    <hr />
+    <div id="list">
+      <p>task 1</p>
+    </div>
+  </body>
+  <script>
+    const input = document.querySelector("#text");
+    const button = document.querySelector("button");
+    const ktiba = document.querySelector("#ktiba");
+    const liste = document.querySelector("#list");
 
-    ajoutButton.onclick = () => {
-      handleAjout();
-    };
-    inputText.onkeydown = (e) => {
-      if (e.key == "Enter") {
-        handleAjout();
-      }
-    };
-    document
-      .querySelectorAll("*")
-      .forEach((el) => el.addEventListener("mouseover", (e) => {}));
-
-
-
-    const handleChange=(e)=>{
-        ktiba.innerText=inputText.value;
+    function handleChange() {
+      ktiba.innerText = input.value;
     }
-    inputText.onkeyup=handleChange();
-
-
-    const handleAjout = (e) => {
-      if (!inputText.value.length) {
-        alert("element feregh");
-        return false;
-      }
-      let li = document.createElement("li");
-      let input = document.createElement("input");
-      input.setAttribute("type",'text')
-      input.setAttribute("value", inputText.value);
-
-      li.appendChild(input);
-      input.setAttribute("readonly",true)
-      inputText.value = "";
-      listeHTML.appendChild(li);
-    };
-
-
-    </script>
-</body>
+    function handleAjout() {
+      let p = ktiba.cloneNode(true);
+      liste.appendChild(p);
+      ktiba.innerHTML = "";
+      input.value = "";
+    }
+    button.onclick = handleAjout;
+    input.onkeyup = handleChange;
+  </script>
 </html>
